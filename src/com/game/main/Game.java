@@ -17,8 +17,11 @@ public class Game extends Canvas {
 	private Thread thread;
 	private boolean running = false;
 	
+	private Handler handler;
+	
 	
 	public Game() {
+		handler = new Handler();
 		
 		new Window(WIDTH, HEIGHT, TITLE, this);
 	}
@@ -27,6 +30,10 @@ public class Game extends Canvas {
 		thread = new Thread();
 		thread .start();
 		running = true;
+		
+		handler.addObject(new Player(150, 150, ID.Player));
+		
+		run();
 	}
 	
 	public synchronized void stop() {
@@ -70,6 +77,7 @@ public class Game extends Canvas {
 	}
 	
 	private void tick() {
+		handler.tick();
 		
 	}
 	
@@ -83,9 +91,9 @@ public class Game extends Canvas {
 		Graphics g = bs.getDrawGraphics();
 		
 		g.setColor(Color.black);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect((int)0, (int)0, WIDTH, HEIGHT);
 		
-	
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();

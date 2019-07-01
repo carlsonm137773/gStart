@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public abstract class GameObject {
 	
-	private float x, y;
-	private float velX, velY;
+	protected float x, y;
+	protected float velX, velY;
 	private ID id;
 	
 	GameObject(float x, float y, ID id){
